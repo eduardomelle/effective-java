@@ -22,8 +22,9 @@ public class PhoneNumber {
 	}
 
 	public static PhoneNumber of(int areaCode, int number) {
-		Preconditions.checkArgument(areaCode > 0, "areaCode must be great than 0");
-		
+		Preconditions.checkArgument(areaCode > 0, "areaCode must be greater than 0");
+		Preconditions.checkArgument(number > 0, "number must be greater than 0");
+
 		return new PhoneNumber(areaCode, number);
 	}
 
