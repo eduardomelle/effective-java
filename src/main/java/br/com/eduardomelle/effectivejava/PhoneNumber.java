@@ -3,6 +3,8 @@
  */
 package br.com.eduardomelle.effectivejava;
 
+import com.google.common.base.Preconditions;
+
 /**
  * @author eduardo
  *
@@ -20,6 +22,8 @@ public class PhoneNumber {
 	}
 
 	public static PhoneNumber of(int areaCode, int number) {
+		Preconditions.checkArgument(areaCode > 0, "areaCode must be great than 0");
+		
 		return new PhoneNumber(areaCode, number);
 	}
 
