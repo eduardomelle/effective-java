@@ -3,6 +3,9 @@
  */
 package br.com.eduardomelle.effectivejava;
 
+import java.util.Objects;
+
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Preconditions;
 
 /**
@@ -26,6 +29,29 @@ public class PhoneNumber {
 		Preconditions.checkArgument(number > 0, "number must be greater than 0");
 
 		return new PhoneNumber(areaCode, number);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(this.areaCode, this.number);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this)
+			return true;
+
+		if (obj instanceof PhoneNumber) {
+			PhoneNumber other = (PhoneNumber) obj;
+			return this.areaCode == other.areaCode && Objects.equals(this.number, other.number);
+		}
+
+		return false;
+	}
+
+	@Override
+	public String toString() {
+		return MoreObjects.toStringHelper(this).add("areaCode", this.areaCode).add("number", this.number).toString();
 	}
 
 }
