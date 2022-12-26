@@ -7,7 +7,7 @@ package br.com.eduardomelle.effectivejava.visitor;
  * @author eduardo
  *
  */
-public abstract class CreditCard {
+public sealed abstract class CreditCard permits Visa, MasterCard {
 
 	abstract <T> T doSomething(CardVisitor<T> visitor);
 
@@ -32,7 +32,7 @@ public abstract class CreditCard {
 
 }
 
-class Visa extends CreditCard {
+final class Visa extends CreditCard {
 
 	@Override
 	<T> T doSomething(CardVisitor<T> visitor) {
@@ -41,7 +41,7 @@ class Visa extends CreditCard {
 
 }
 
-class MasterCard extends CreditCard {
+final class MasterCard extends CreditCard {
 
 	@Override
 	<T> T doSomething(CardVisitor<T> visitor) {
